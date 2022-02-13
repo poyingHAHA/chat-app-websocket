@@ -26,18 +26,6 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', (message) => {
     io.emit('message', message)
   })
-
-  // Omitting the eent from the server to the client.
-  // count is going to be available from the callback function on the client.
-  socket.emit('countUpdated', count)
-
-  socket.on('increment', () => {
-    count+=1
-    // when using emit, we're emitting the event to a particular connection.
-    // socket.emit('countUpdated', count)
-    // io.emit is going to omit the event to every single connection that's currently available
-    io.emit('countUpdated', count)
-  })
 })
 
 
